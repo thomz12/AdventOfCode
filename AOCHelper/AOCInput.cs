@@ -78,7 +78,7 @@ namespace AOCHelper
         /// <returns>The input split by the given substring.</returns>
         public string[] GetInput(string split)
         {
-            return GetInput().Split(new string[] { split }, StringSplitOptions.None);
+            return GetInput()?.Split(new string[] { split }, StringSplitOptions.None);
         }
 
         /// <summary>

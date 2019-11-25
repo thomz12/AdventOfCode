@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 namespace _2019
 {
     /// <summary>
-    /// Day of the advent of code 2019, containing solutions of the two puzzles.
+    /// Test day, uses a 2018 input from day 1.
     /// </summary>
-    class Day01 : AOCDay
+    class Day00 : AOCDay
     {
         /// <summary>
         /// Constructor.
         /// </summary>
-        public Day01() 
-            : base(2019, 1)
+        public Day00() 
+            : base(2018, 1)
         {
 
         }
@@ -28,7 +28,13 @@ namespace _2019
         /// <returns>The answer.</returns>
         public override object Puzzle1(AOCInput input)
         {
-            return null;
+            string[] lines = input.GetInputLines();
+
+            int freq = 0;
+            foreach (string line in lines)
+                freq += int.Parse(line);
+
+            return freq;
         }
 
         /// <summary>
@@ -38,7 +44,22 @@ namespace _2019
         /// <returns>The answer.</returns>
         public override object Puzzle2(AOCInput input)
         {
-            return null;
+            string[] lines = input.GetInputLines();
+
+            List<int> found = new List<int>();
+
+            int freq = 0;
+            while (true)
+            {
+                foreach (string line in lines)
+                {
+                    if (found.Contains(freq))
+                        return freq;
+
+                    found.Add(freq);
+                    freq += int.Parse(line);
+                }
+            }
         }
     }
 }
