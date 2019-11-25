@@ -21,4 +21,4 @@ jobs:
         # Artifact name
         name: Artifact
         # Directory containing files to upload
-        path: D:\a\AdventOfCode2019\AdventOfCode2019\2019\bin\Release\
+        path: D:\a\AdventOfCode\AdventOfCode2019\2019\bin\Release\
