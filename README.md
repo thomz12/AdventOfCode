@@ -1,5 +1,6 @@
 # Advent Of Code
 My solutions for the 2019 advent of code event. It also includes a very simple helper class speeding up some tasks.
+To learn more about the advent of code, visit the [advent of code website!](https://adventofcode.com)
 ## AOCInput
 ### What does it do?
 The Advent Of Code helper class makes some recuring task easy.
