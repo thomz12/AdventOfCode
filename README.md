@@ -1,4 +1,4 @@
-# Advent Of Code
+# Advent Of Code ![](https://github.com/thomz12/AdventOfCode/workflows/Build%20Solution/badge.svg)
 My solutions for the 2019 advent of code event. It also includes a very simple helper class speeding up some tasks.
 To learn more about the advent of code, visit the [advent of code website!](https://adventofcode.com)
 ## AOCInput
