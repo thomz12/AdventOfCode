@@ -1,6 +1,6 @@
 # Advent Of Code
 My solutions for the 2019 advent of code event. It also includes a very simple helper class speeding up some tasks.
-## Helper
+## AOCInput
 ### What does it do?
 The Advent Of Code helper class makes some recuring task easy.
 What it does:
@@ -11,14 +11,14 @@ What it does:
 ### Usage
 Reference the AOCHelper. Call the constructor like this to set it up for `2019` day `1`:
 
-`AOCHelper helper = new AOCHelper(2019, 1);`
+`AOCInput input = new AOCInput(2019, 1);`
 
 To get input, you can use the following:
 
 ```
-string input = helper.GetInput();
-string[] inputSplit = helper.GetInput(",");
-string[] inputLines = helper.GetInputLines();
+string rawInput = input.GetInput();
+string[] inputSplit = input.GetInput(",");
+string[] inputLines = input.GetInputLines();
 ```
 #### Getting and setting the session ID
 The helper will use the session in `session.txt`, placed next to the executable. To make life easy, you can paste your session string in the `AOCHelper/session.txt` file. This won't be updated in the repo for others to see.
@@ -26,6 +26,37 @@ The helper will use the session in `session.txt`, placed next to the executable.
 The session ID can be easily retrieved from the advent of code website by logging in, and viewing your cookies in your favorite browser. You should find the session string there with name `session`.
 
 This is necessary to get user specific input.
+
+## AOCRunner and AOCDay
+### What does it do?
+The AOCRunner runs functions from an implemented AOCDay. It will report the answer and the time it took to execute the puzzles. Implementing the AOCDay is easy, since you only need to implement two functions. It provides you with a AOCInput for getting input, and the function should return a string that is the answer to the problem. Also, the constructor of the day should call its parent constructor to report what day and what year it is for. See example below
+
+```
+class Day01 : AOCDay
+{
+    public Day01() 
+        : base(2018, 1)
+    {
+
+    }
+
+    public override string Puzzle1(AOCInput input)
+    {
+        int freq = 0;
+        string[] lines = input.GetInputLines();
+
+        foreach (string line in lines)
+            freq += int.Parse(line);
+
+        return freq.ToString();
+    }
+
+    public override string Puzzle2(AOCInput input)
+    {
+      ...
+```
+To run the day, you can simple do the following:
+`AOCRunner runner = new AOCRunner(new Day01());`
 
 ### Building
 Building is only tested in VS2019, but since I kept it pretty simple I don't see a reason why it shouldn't work elsewhere.
