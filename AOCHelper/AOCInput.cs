@@ -2,13 +2,15 @@
 using System.IO;
 using System.Net;
 
-namespace AOC
+namespace AOCHelper
 {
     /// <summary>
     /// Class with utilities for the AoC event.
     /// </summary>
-    public class AOCHelper
+    public class AOCInput
     {
+        private static string SESSION_FILE = "session.txt";
+
         /// <summary>
         /// Day of this helper.
         /// </summary>
@@ -24,25 +26,31 @@ namespace AOC
         /// </summary>
         public string Session { get; private set; }
 
+        private string _input;
+
         /// <summary>
         /// Constructor for the AOC helper.
         /// </summary>
         /// <param name="year">The year to get.</param>
         /// <param name="day">The day to get.</param>
         /// <param name="token">The session, can be retrieved from the browser after login.</param>
-        public AOCHelper(int year, int day)
+        public AOCInput(int year, int day)
         {
             // Set properties.
             Year = year;
             Day = day;
-            Session = File.ReadAllText("session.txt");
+            if(File.Exists(SESSION_FILE))
+                Session = File.ReadAllText(SESSION_FILE);
+
+            // Get input, and keep it in memory.
+            _input = RetreiveInput();
         }
 
         /// <summary>
         /// Retrieve input from the AoC website.
         /// </summary>
         /// <returns>The input from the AoC website, or <see langword="null"/> when failed.</returns>
-        public string GetInput()
+        private string RetreiveInput()
         {
             string localFilePath = $"AoC_{Year}_{Day}.txt";
 
@@ -52,6 +60,15 @@ namespace AOC
 
             // Return the contents on the disk.
             return GetLocalInput(localFilePath);
+        }
+
+        /// <summary>
+        /// Get the raw input, not spitted.
+        /// </summary>
+        /// <returns>The raw input.</returns>
+        public string GetInput()
+        {
+            return _input;
         }
 
         /// <summary>

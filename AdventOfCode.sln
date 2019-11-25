@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOCHelper", "AOCHelper\AOCH
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2019", "2019", "{549B3044-CDFC-419E-BB4A-3C44E3A02DF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day01", "2019\Day01\Day01.csproj", "{F209ABF1-1C7E-46D6-B94D-94B1371AB12B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2019", "2019\2019.csproj", "{BE639360-D71D-4945-A364-0F46272C318E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,16 +19,16 @@ Global
 		{0DBF6A37-6FFE-436A-9CAE-4CFAF25291B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0DBF6A37-6FFE-436A-9CAE-4CFAF25291B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0DBF6A37-6FFE-436A-9CAE-4CFAF25291B1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F209ABF1-1C7E-46D6-B94D-94B1371AB12B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F209ABF1-1C7E-46D6-B94D-94B1371AB12B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F209ABF1-1C7E-46D6-B94D-94B1371AB12B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F209ABF1-1C7E-46D6-B94D-94B1371AB12B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE639360-D71D-4945-A364-0F46272C318E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE639360-D71D-4945-A364-0F46272C318E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE639360-D71D-4945-A364-0F46272C318E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE639360-D71D-4945-A364-0F46272C318E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{F209ABF1-1C7E-46D6-B94D-94B1371AB12B} = {549B3044-CDFC-419E-BB4A-3C44E3A02DF8}
+		{BE639360-D71D-4945-A364-0F46272C318E} = {549B3044-CDFC-419E-BB4A-3C44E3A02DF8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0CC37137-8452-4FAB-9B98-7B178DF93F65}

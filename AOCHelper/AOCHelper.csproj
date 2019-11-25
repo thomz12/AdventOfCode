@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AOCHelper.cs" />
+    <Compile Include="AOCDay.cs" />
+    <Compile Include="AOCInput.cs" />
+    <Compile Include="AOCRunner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
