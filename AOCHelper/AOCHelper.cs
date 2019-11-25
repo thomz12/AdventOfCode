@@ -30,12 +30,12 @@ namespace AOC
         /// <param name="year">The year to get.</param>
         /// <param name="day">The day to get.</param>
         /// <param name="token">The session, can be retrieved from the browser after login.</param>
-        public AOCHelper(int year, int day, string session)
+        public AOCHelper(int year, int day)
         {
             // Set properties.
             Year = year;
             Day = day;
-            Session = session;
+            Session = File.ReadAllText("session.txt");
         }
 
         /// <summary>
