@@ -5,17 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _2019
+namespace _2018
 {
     /// <summary>
-    /// Test day, uses a 2018 input from day 1.
+    /// Day of the advent of code 2019, containing solutions of the two puzzles.
     /// </summary>
-    class Day00 : AOCDay
+    class Day01 : AOCDay
     {
         /// <summary>
         /// Constructor.
         /// </summary>
-        public Day00() 
+        public Day01()
             : base(2018, 1)
         {
 

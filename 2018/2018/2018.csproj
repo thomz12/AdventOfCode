@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BE639360-D71D-4945-A364-0F46272C318E}</ProjectGuid>
+    <ProjectGuid>{DBCA32FD-FD90-4D34-A0B2-6A8B9D53A8A7}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>_2019</RootNamespace>
-    <AssemblyName>2019</AssemblyName>
+    <RootNamespace>_2018</RootNamespace>
+    <AssemblyName>2018</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,6 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Day01.cs" />
+    <Compile Include="Day03.cs" />
+    <Compile Include="Day02.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -51,7 +54,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AOCHelper\AOCHelper.csproj">
+    <ProjectReference Include="..\..\AOCHelper\AOCHelper.csproj">
       <Project>{0DBF6A37-6FFE-436A-9CAE-4CFAF25291B1}</Project>
       <Name>AOCHelper</Name>
     </ProjectReference>
