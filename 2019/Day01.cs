@@ -1,9 +1,5 @@
 ﻿using AOCHelper;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _2019
 {
@@ -28,7 +24,9 @@ namespace _2019
         /// <returns>The answer.</returns>
         public override object Puzzle1(AOCInput input)
         {
-            return null;
+            string[] lines = input.GetInputLines();
+
+            return lines.Select(x => GetFuel(int.Parse(x))).Sum();
         }
 
         /// <summary>
@@ -38,7 +36,31 @@ namespace _2019
         /// <returns>The answer.</returns>
         public override object Puzzle2(AOCInput input)
         {
-            return null;
+            string[] lines = input.GetInputLines();
+
+            int totalFuel = 0;
+
+            foreach(string line in lines)
+            {
+                int fuel = GetFuel(int.Parse(line));
+                int extra = fuel;
+
+                while (extra >= 0)
+                {
+                    extra = GetFuel(extra);
+                    if (extra > 0)
+                        fuel += extra;
+                }
+
+                totalFuel += fuel;
+            }
+
+            return totalFuel;
+        }
+
+        public int GetFuel(int mass)
+        {
+            return (mass / 3) - 2;
         }
     }
 }
