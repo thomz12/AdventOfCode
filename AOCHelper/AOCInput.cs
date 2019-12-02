@@ -91,6 +91,17 @@ namespace AOCHelper
         }
 
         /// <summary>
+        /// Set the input to example input.
+        /// This is useful to still use the GetInput functionality of this class.
+        /// Original input will be lost after calling this method.
+        /// </summary>
+        /// <param name="input">The example input.</param>
+        public void SetExampleInput(string input)
+        {
+            _input = input;
+        }
+
+        /// <summary>
         /// Get the input for this helpers year and day.
         /// </summary>
         /// <param name="localFilePath">The file to download to.</param>
