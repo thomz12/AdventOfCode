@@ -38,26 +38,28 @@ namespace _2019
         {
             string[] lines = input.GetInputLines();
 
-            int totalFuel = 0;
-
-            foreach(string line in lines)
-            {
-                int fuel = GetFuel(int.Parse(line));
-                int extra = fuel;
-
-                while (extra >= 0)
-                {
-                    extra = GetFuel(extra);
-                    if (extra > 0)
-                        fuel += extra;
-                }
-
-                totalFuel += fuel;
-            }
-
-            return totalFuel;
+            return lines.Select(x => int.Parse(x)).Select(x => GetWeightRecursive(x) - x).Sum();
         }
 
+        /// <summary>
+        /// Get weight recursively.
+        /// </summary>
+        /// <param name="mass">The mass to get fuel for.</param>
+        /// <returns>The weight of the module plus its required fuel.</returns>
+        public int GetWeightRecursive(int mass)
+        {
+            if (mass <= 0)
+                return 0;
+
+            int fuel = GetWeightRecursive((mass / 3) - 2);
+            return mass + fuel;
+        }
+
+        /// <summary>
+        /// Get the required fuel amounts.
+        /// </summary>
+        /// <param name="mass">Mass of the module.</param>
+        /// <returns>The amount of fuel required for the given module.</returns>
         public int GetFuel(int mass)
         {
             return (mass / 3) - 2;
