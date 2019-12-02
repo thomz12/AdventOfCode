@@ -1,9 +1,5 @@
 ﻿using AOCHelper;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _2019
 {
@@ -41,11 +37,20 @@ namespace _2019
             catch (Exception ex)
             {
                 Console.WriteLine("Failed to create or find given day.");
+#if DEBUG
                 Console.WriteLine(ex);
+#endif
+
+                return;
             }
 
             // Run the puzzles of the day.
             AOCRunner runner = new AOCRunner(day, RunMode.BOTH);
+
+#if DEBUG
+            // Prevents the console from closing while in debug mode.
+            Console.Read();
+#endif
         }
 
         private static Type GetTypeByDay(int day)

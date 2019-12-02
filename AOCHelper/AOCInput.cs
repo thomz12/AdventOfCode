@@ -120,7 +120,10 @@ namespace AOCHelper
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Something went wrong downloading the input file from \"{requestURL}\"! {ex.ToString()}");
+                Console.WriteLine($"Something went wrong downloading the input file from \"{requestURL}\"!");
+#if DEBUG
+                Console.WriteLine(ex);
+#endif
             }
         }
 
@@ -142,7 +145,10 @@ namespace AOCHelper
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Failed to read local input! {ex.ToString()}");
+                Console.WriteLine($"Failed to read local input from {localFilePath}!");
+#if DEBUG
+                Console.WriteLine(ex);
+#endif
                 return null;
             }
         }

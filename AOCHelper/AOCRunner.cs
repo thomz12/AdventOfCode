@@ -38,7 +38,6 @@ namespace AOCHelper
 
             // Done, report total time and Read() to keep console alive.
             Console.WriteLine($"Done running puzzles! (Total time: { time1 + time2 }ms)");
-            Console.Read();
         }
 
         /// <summary>
