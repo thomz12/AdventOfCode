@@ -19,7 +19,7 @@ namespace _2019
         static void Main(string[] args)
         {
             // Run the puzzles of the day provided here.
-            AOCRunner runner = new AOCRunner(new Day01());
+            AOCRunner runner = new AOCRunner(new Day02());
         }
     }
 }
