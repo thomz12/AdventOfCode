@@ -17,16 +17,24 @@ namespace AOCHelper
         /// Construct a AOCRunner, used for solving puzzles and recording time. It also get a correct <see cref="AOCInput"/>
         /// </summary>
         /// <param name="puzzle">The day to solve.</param>
-        public AOCRunner(AOCDay puzzle)
+        /// <param name="mode">The runmode to determine what puzzles to run.</param>
+        public AOCRunner(AOCDay puzzle, RunMode mode = RunMode.BOTH)
         {
             Console.WriteLine($"Running puzzles for { puzzle.Year } day { puzzle.Day }...");
 
             // Setup input getter.
             _input = new AOCInput(puzzle.Year, puzzle.Day);
 
-            // Run and report puzzles.
-            Console.WriteLine($"Puzzle 1: { RunPuzzle(puzzle.ExecutePuzzle1, out int time1) } - took { time1 }ms");
-            Console.WriteLine($"Puzzle 2: { RunPuzzle(puzzle.ExecutePuzzle2, out int time2) } - took { time2 }ms");
+            int time1 = 0;
+            int time2 = 0;
+
+            // Run and report puzzle 1.
+            if (mode.HasFlag(RunMode.PART_1))
+                Console.WriteLine($"Puzzle 1: { RunPuzzle(puzzle.ExecutePuzzle1, out time1) } - took { time1 }ms");
+
+            // Run and report puzzle 2.
+            if (mode.HasFlag(RunMode.PART_2))
+                Console.WriteLine($"Puzzle 2: { RunPuzzle(puzzle.ExecutePuzzle2, out time2) } - took { time2 }ms");
 
             // Done, report total time and Read() to keep console alive.
             Console.WriteLine($"Done running puzzles! (Total time: { time1 + time2 }ms)");
