@@ -83,12 +83,8 @@ namespace _2019
             // Parse input.
             string[] lines = input.GetInputLines();
 
-            // Lists to keep track of all distances.
-            List<int> distances1;
-            List<int> distances2;
-
-            List<Point> line1 = GetLine(lines[0].Split(','), out distances1);
-            List<Point> line2 = GetLine(lines[1].Split(','), out distances2);
+            List<Point> line1 = GetLine(lines[0].Split(','));
+            List<Point> line2 = GetLine(lines[1].Split(','));
 
             // Find intersections.
             List<Point> intersections = line1.Intersect(line2).ToList();
@@ -97,43 +93,8 @@ namespace _2019
             intersections.RemoveAt(0);
 
             // Find fewest combines steps to intersection.
-            return intersections.Select(x => distances1[line1.IndexOf(x)] + distances2[line2.IndexOf(x)])
+            return intersections.Select(x => line1.IndexOf(x) + line2.IndexOf(x))
                 .OrderBy(x => x).First();
-        }
-
-        private List<Point> GetLine(string[] lineData, out List<int> distances)
-        {
-            List<Point> line = new List<Point>();
-            distances = new List<int>();
-            int totalDist = 0;
-
-            line.Add(new Point(0, 0));
-            Point dirVec = new Point(0, 0);
-
-            foreach (string segment in lineData)
-            {
-                char dir = segment[0];
-                int dist = int.Parse(segment.Substring(1));
-
-                if (dir == 'U')
-                    dirVec = new Point(0, 1);
-                else if (dir == 'D')
-                    dirVec = new Point(0, -1);
-                else if (dir == 'L')
-                    dirVec = new Point(-1, 0);
-                else if (dir == 'R')
-                    dirVec = new Point(1, 0);
-
-                for (int i = 0; i < dist; ++i)
-                {
-                    Point last = line.Last();
-                    line.Add(new Point(last.X + dirVec.X, last.Y + dirVec.Y));
-
-                    distances.Add(totalDist);
-                    totalDist++;
-                }
-            }
-            return line;
         }
     }
 }
