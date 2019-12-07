@@ -21,6 +21,14 @@ namespace _2019
         // Outputs of the computer in a run.
         private List<int> _outputs;
 
+        // Indicates if the computer uses the console at all. (For input and output)
+        private bool _useConsole;
+
+        /// <summary>
+        /// Indicates if the computer halted.
+        /// </summary>
+        public bool Halted { get; private set; }
+
         /// <summary>
         /// All computer outputs from last run.
         /// </summary>
@@ -30,23 +38,28 @@ namespace _2019
         /// Intcode Computer constructor.
         /// </summary>
         /// <param name="program">The program to execute.</param>
-        public IntcodeComputer(int[] program)
+        /// <param name="useConsole">Use console input and output or not.</param>
+        public IntcodeComputer(int[] program, bool useConsole = true)
         {
             _program = program;
             _modes = new int[3] { 0, 0, 0 };
             _outputs = new List<int>();
+
+            _useConsole = useConsole;
         }
 
         /// <summary>
         /// Run the intcode program.
+        /// If <see cref="_useConsole"> is false, and no more input is available the computer 
+        /// will stop executing until a new run is called with new input parameters. 
         /// </summary>
         public void Run(params int[] input)
         {
-            // Set instruction pointer to start.
-            _ip = 0;
-
-            // Clear outputs.
-            _outputs.Clear();
+            if(Halted)
+            {
+                _ip = 0;
+                _outputs.Clear();
+            }
 
             // Amount of inputs used.
             int inputUsed = 0;
@@ -58,7 +71,10 @@ namespace _2019
 
                 // If OP code is 99 (HALT) stop executing.
                 if (opCode == 99)
+                {
+                    Halted = true;
                     break;
+                }
 
                 switch (opCode)
                 {
@@ -76,6 +92,10 @@ namespace _2019
                     case 3:
                         if (inputUsed >= input.Length)
                         {
+                            // If no console, wait until next Run with input.
+                            if (!_useConsole)
+                                return;
+
                             Console.WriteLine("\nInput: ");
                             int consoleInput = int.Parse(Console.ReadLine());
                             _program[GetValue(1, true)] = consoleInput;
@@ -91,7 +111,10 @@ namespace _2019
                     // OUTPUT
                     case 4:
                         _outputs.Add(GetValue(1));
-                        Console.WriteLine(GetValue(1));
+
+                        if(_useConsole)
+                            Console.WriteLine(GetValue(1));
+
                         _ip += 2;
                         break;
                     // JUMP IF TRUE
