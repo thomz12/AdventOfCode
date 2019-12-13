@@ -1,4 +1,5 @@
 ﻿using AOCHelper;
+using System.Linq;
 
 namespace _2019
 {
@@ -23,7 +24,12 @@ namespace _2019
         /// <returns>The answer.</returns>
         public override object Puzzle1(AOCInput input)
         {
-            return null;
+            long[] software = input.GetInput(",").Select(x => long.Parse(x)).ToArray();
+
+            IntcodeComputer computer = new IntcodeComputer(software, false);
+            computer.Run(1);
+
+            return computer.Outputs.Last();
         }
 
         /// <summary>
@@ -33,7 +39,12 @@ namespace _2019
         /// <returns>The answer.</returns>
         public override object Puzzle2(AOCInput input)
         {
-            return null;
+            long[] software = input.GetInput(",").Select(x => long.Parse(x)).ToArray();
+
+            IntcodeComputer computer = new IntcodeComputer(software, false);
+            computer.Run(2);
+
+            return computer.Outputs.Last();
         }
     }
 }

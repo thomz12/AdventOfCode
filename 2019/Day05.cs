@@ -24,7 +24,7 @@ namespace _2019
         /// <returns>The answer.</returns>
         public override object Puzzle1(AOCInput input)
         {
-            int[] program = input.GetInput(",").Select(x => int.Parse(x)).ToArray();
+            long[] program = input.GetInput(",").Select(x => long.Parse(x)).ToArray();
 
             IntcodeComputer computer = new IntcodeComputer(program);
             computer.Run(1);
@@ -39,7 +39,7 @@ namespace _2019
         /// <returns>The answer.</returns>
         public override object Puzzle2(AOCInput input)
         {
-            int[] program = input.GetInput(",").Select(x => int.Parse(x)).ToArray();
+            long[] program = input.GetInput(",").Select(x => long.Parse(x)).ToArray();
 
             IntcodeComputer computer = new IntcodeComputer(program);
             computer.Run(5);

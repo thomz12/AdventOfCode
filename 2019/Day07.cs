@@ -33,16 +33,16 @@ namespace _2019
             int[] sequence = new int[] { 0, 1, 2, 3, 4 };
             var permutations = GetPermutations<int>(sequence, 5);
 
-            int maxOutput = 0;
+            long maxOutput = 0;
             int maxSequence = 0;
 
             for(int i = 0; i < permutations.Count(); ++i)
-            { 
-                int output = 0;
+            {
+                long output = 0;
 
                 for (int j = 0; j < 5; ++j)
                 {
-                    computer = new IntcodeComputer((int[])software.Clone(), false);
+                    computer = new IntcodeComputer((long[])software.Clone(), false);
                     computer.Run(permutations.ElementAt(i).ElementAt(j), output);
                     output = computer.Outputs.Last();
                 }
@@ -71,17 +71,17 @@ namespace _2019
             int[] sequence = new int[] { 5, 6, 7, 8, 9 };
             var permutations = GetPermutations<int>(sequence, 5);
 
-            int maxOutput = 0;
+            long maxOutput = 0;
             int maxSequence = 0;
 
             for (int i = 0; i < permutations.Count(); ++i)
             {
-                int output = 0;
+                long output = 0;
 
                 // Initialize computers.
                 for (int j = 0; j < computer.Length; ++j)
                 {
-                    computer[j] = new IntcodeComputer((int[])software.Clone(), false);
+                    computer[j] = new IntcodeComputer((long[])software.Clone(), false);
                     computer[j].Run(permutations.ElementAt(i).ElementAt(j), output);
                     output = computer[j].Outputs.Last();
                 }

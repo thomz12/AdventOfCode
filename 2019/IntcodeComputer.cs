@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace _2019
 {
@@ -10,16 +11,19 @@ namespace _2019
     class IntcodeComputer
     {
         // The intcode program.
-        private int[] _program;
+        private long[] _program;
 
         // Parameter modes.
         private int[] _modes;
 
         // The Instruction Pointer.
-        private int _ip;
+        private long _ip;
+
+        // The relative base for parameter mode 2.
+        private long _rb;
 
         // Outputs of the computer in a run.
-        private List<int> _outputs;
+        private List<long> _outputs;
 
         // Indicates if the computer uses the console at all. (For input and output)
         private bool _useConsole;
@@ -32,18 +36,20 @@ namespace _2019
         /// <summary>
         /// All computer outputs from last run.
         /// </summary>
-        public ReadOnlyCollection<int> Outputs { get { return _outputs.AsReadOnly(); } }
+        public ReadOnlyCollection<long> Outputs { get { return _outputs.AsReadOnly(); } }
 
         /// <summary>
         /// Intcode Computer constructor.
         /// </summary>
         /// <param name="program">The program to execute.</param>
         /// <param name="useConsole">Use console input and output or not.</param>
-        public IntcodeComputer(int[] program, bool useConsole = true)
+        public IntcodeComputer(long[] program, bool useConsole = true)
         {
             _program = program;
+            Array.Resize(ref _program, 100000);
+
             _modes = new int[3] { 0, 0, 0 };
-            _outputs = new List<int>();
+            _outputs = new List<long>();
 
             _useConsole = useConsole;
         }
@@ -53,7 +59,7 @@ namespace _2019
         /// If <see cref="_useConsole"> is false, and no more input is available the computer 
         /// will stop executing until a new run is called with new input parameters. 
         /// </summary>
-        public void Run(params int[] input)
+        public void Run(params long[] input)
         {
             if(Halted)
             {
@@ -67,7 +73,7 @@ namespace _2019
             // Continue until OP code 99.
             while (true)
             {
-                int opCode = GetOPCode(_program[_ip]);
+                long opCode = GetOPCode(_program[_ip]);
 
                 // If OP code is 99 (HALT) stop executing.
                 if (opCode == 99)
@@ -113,7 +119,7 @@ namespace _2019
                         _outputs.Add(GetValue(1));
 
                         if(_useConsole)
-                            Console.WriteLine(GetValue(1));
+                            Console.WriteLine(_outputs.Last());
 
                         _ip += 2;
                         break;
@@ -141,6 +147,11 @@ namespace _2019
                         _program[GetValue(3, true)] = GetValue(1) == GetValue(2) ? 1 : 0;
                         _ip += 4;
                         break;
+                    // SET RELATIVE BASE
+                    case 9:
+                        _rb += GetValue(1);
+                        _ip += 2;
+                        break;
                 }
             }
         }
@@ -151,9 +162,29 @@ namespace _2019
         /// <param name="offset">Offset from the current <see cref="_ip"/></param>
         /// <param name="forceAddres">Force paramter mode to be 0. (Used for writes)</param>
         /// <returns>Value from the program with using parameter mode.</returns>
-        private int GetValue(int offset, bool forceAddres = false)
+        private long GetValue(int offset, bool forceAddres = false)
         {
-            return (_modes[offset - 1] == 0 && !forceAddres) ? _program[_program[_ip + offset]] : _program[_ip + offset];
+            int mode = _modes[offset - 1];
+
+            if (forceAddres)
+            {
+                if(mode == 0)
+                    return _program[_ip + offset];
+                else if(mode == 2)
+                    return _program[_ip + offset] + _rb;
+            }
+
+            switch(mode)
+            {
+                case 0:
+                    return _program[_program[_ip + offset]];
+                case 1:
+                    return _program[_ip + offset];
+                case 2:
+                    return _program[_program[_ip + offset] + _rb];
+            }
+
+            return 0;
         }
 
         /// <summary>
@@ -161,7 +192,7 @@ namespace _2019
         /// </summary>
         /// <param name="opCode">The raw code to progress.</param>
         /// <returns>The OP code. Sets the modes in <see cref="_modes"/></returns>
-        private int GetOPCode(int opCode)
+        private long GetOPCode(long opCode)
         {
             // Reset parameter modes.
             _modes[0] = 0;
