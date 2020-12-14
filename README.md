@@ -1,5 +1,5 @@
 # Advent Of Code ![](https://github.com/thomz12/AdventOfCode/workflows/Build%20Solution/badge.svg)
-My solutions for the 2019 advent of code event. It also includes a very simple helper class speeding up some tasks.
+My solutions for the advent of code event. It also includes a very simple helper class speeding up some tasks.
 To learn more about the advent of code, visit the [advent of code website!](https://adventofcode.com)
 ## AOCInput
 ### What does it do?
@@ -10,9 +10,9 @@ What it does:
 - Optionally, splits the input
 - Saves the input locally
 ### Usage
-Reference the AOCHelper. Call the constructor like this to set it up for `2019` day `1`:
+Reference the AOCHelper. To get input, call the AOCInput constructor like this to set it up for `2020` day `1`:
 
-`AOCInput input = new AOCInput(2019, 1);`
+`AOCInput input = new AOCInput(2020, 1);`
 
 To get input, you can use the following:
 
