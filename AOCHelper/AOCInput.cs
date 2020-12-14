@@ -98,7 +98,7 @@ namespace AOCHelper
         /// <param name="input">The example input.</param>
         public void SetExampleInput(string input)
         {
-            _input = input;
+            _input = input.Replace("\r\n", "\n");
         }
 
         /// <summary>
